@@ -3,7 +3,7 @@
 void aCero(Reloj *r){
     (*r) = 0;
 }
-void tick(Reloj *r){
+void tic(Reloj *r){
     (*r) ++;
 }
 int instante(Reloj r){

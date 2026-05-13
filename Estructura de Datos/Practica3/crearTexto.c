@@ -15,7 +15,7 @@ void escribirPalabra(FILE *f,Palabra p){
 }
 void main() {
     FILE * f;
-    f=fopen("text1.txt","wr");
+    f=fopen("text1.txt","w");
     Palabra p1 = {{'H','O','L','A'}, 4};
     Palabra p2 = {{'P','A','R','A'}, 4};
     escribirPalabra(f, p1);

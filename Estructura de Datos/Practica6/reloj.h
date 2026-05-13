@@ -3,6 +3,6 @@
 #include <stdio.h>
 typedef int Reloj;
 void aCero(Reloj *r);
-void tick(Reloj *r);
+void tic(Reloj *r);
 int instante(Reloj r);
 #endif

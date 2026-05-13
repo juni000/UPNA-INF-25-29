@@ -1,8 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "colaDeEnteros.h"
-#include <stdbool.h>
 void errorColaDeEnteros(char s[]){
-    printf("\n\n\nERROR en el m´odulo colas: %s \n", s);
+    printf("\n\n\nERROR en el modulo colas: %s \n", s);
     while (true) exit(-1);
 }
 void nuevaColaDeEnteros(ColaDeEnteros *c){

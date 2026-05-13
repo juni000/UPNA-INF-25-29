@@ -1,5 +1,5 @@
 #include "cabinas.h"
-void iniciarCabina(Cabina *cab, int tmin, int tmax){
+void iniciarCab(Cabina *cab, int tmin, int tmax){
     cab->nCoches = 0;
     cab->maxCoches = 0;
     cab->servidos = 0;
@@ -27,7 +27,7 @@ int cuantosCoches(Cabina cab){
 }
 void servCabina(Cabina *cab, Reloj r){
     int x;
-    if (cab->proxServ = instante(r)){
+    if (cab->proxServ == instante(r)){
         cab->servidos++;
         primeroColaDeEnteros(cab->colaCoches, &x);
         avanceColaDeEnteros(&cab->colaCoches);

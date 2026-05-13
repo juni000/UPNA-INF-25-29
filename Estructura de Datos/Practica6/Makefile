@@ -1,16 +1,16 @@
-simPeaje: simPeaje.c controles.o peajes.o cabinas.o colaDeEnteros.o ruleta.o reloj.o
-	gcc -o simPeaje simPeaje.c controles.o peajes.o cabinas.o colaDeEnteros.o ruleta.o reloj.o
+simPeaje.exe: simPeaje.c controles.o peajes.o cabinas.o colaDeEnteros.o ruleta.o reloj.o
+	gcc -g -o simPeaje.exe simPeaje.c controles.o peajes.o cabinas.o colaDeEnteros.o ruleta.o reloj.o
 controles.o: controles.c controles.h
-	gcc -c controles.c
+	gcc -g -c controles.c
 peajes.o: peajes.c peajes.h
-	gcc -c peajes.c
+	gcc -g -c peajes.c
 cabinas.o: cabinas.c cabinas.h
-	gcc -c cabinas.c
+	gcc -g -c cabinas.c
 colaDeEnteros.o: colaDeEnteros.c colaDeEnteros.h
-	gcc -c colaDeEnteros.c
+	gcc -g -c colaDeEnteros.c
 ruleta.o: ruleta.c ruleta.h
-	gcc -c ruleta.c
+	gcc -g -c ruleta.c
 reloj.o: reloj.c reloj.h
-	gcc -c reloj.c
+	gcc -g -c reloj.c
 clean:
-	rm *.o simPeaje
+	del *.o simPeaje.exe

@@ -1,5 +1,6 @@
 #ifndef FFF_COLA_DE_ENTEROS_H
 #define FFF_COLA_DE_ENTEROS_H
+#include <stdbool.h>
 typedef struct nodoDeColaDeEnteros {
     struct nodoDeColaDeEnteros *s;
     int e;

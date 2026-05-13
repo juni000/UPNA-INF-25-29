@@ -4,10 +4,12 @@
 #include "reloj.h"
 #define NCAB 5 // Número de cabinas
 #include "cabinas.h"
+#include "ruleta.h"
 
 typedef struct Peaje{
     Cabina cabinas[NCAB];
 }Peaje;
+
 
 /*
  * Inicia el peaje
@@ -28,5 +30,10 @@ int eligeCabina(const Peaje *p);
  * Simula una ronda de servicio de las cabinas
  */
 void rondaCabinas(Peaje *p, Reloj r);
+
+/*
+ * Muestra los resultados de cada cabina
+ */
+void mostrarResultados(Peaje p);
 
 #endif
