@@ -1,12 +1,18 @@
+/**
+ *	MODULO: Simulacion de peaje
+ *	FICHERO: simPeaje.c
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Ejecuta la simulacion principal del peaje.
+ */
 #define TSIM 10800
-#include <stdio.h>
 #include "controles.h"
-#include "peajes.h"
-#include "cabinas.h"
 #include "reloj.h"
-void iniciarSimulacion(Control *c, int tmedio){
+#include "ruleta.h"
+void iniciarSimulacion(Control *c){
     iniciarRuleta();
-    iniciarControles(c, tmedio);
+    iniciarControles(c);
 }
 
 void siguienteIteracion(Control *c, Reloj r){
@@ -16,16 +22,12 @@ void siguienteIteracion(Control *c, Reloj r){
 void main(){
     Control c;
     Reloj r;
-    int tmedio;
-    printf("Introduce el tiempo medio entre llegadas de coches: \n");
-    tmedio = 60;
-    //scanf("%d", &tmedio);
     aCero(&r);
-    iniciarSimulacion(&c, tmedio);
+    iniciarSimulacion(&c);
     while (instante(r) != TSIM){
         tic(&r);
         siguienteIteracion(&c, r);
     }
-    mostrarResultados(c.peaje);
+    mostrarResultados(c);
     
 }

@@ -1,3 +1,11 @@
+/**
+ *	MODULO: Cola de enteros
+ *	FICHERO: colaDeEnteros.c
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Implementa una cola dinamica de enteros.
+ */
 #include <stdlib.h>
 #include <stdio.h>
 #include "colaDeEnteros.h"

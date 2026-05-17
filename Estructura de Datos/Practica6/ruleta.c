@@ -1,5 +1,15 @@
+/**
+ *	MODULO: Ruleta
+ *	FICHERO: ruleta.c
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Genera valores aleatorios para la simulacion.
+ */
 #include "ruleta.h"
-
+#include <math.h>
+#include <time.h>
+#include <stdlib.h>
 void iniciarRuleta(){
     srand(time(NULL));
 }

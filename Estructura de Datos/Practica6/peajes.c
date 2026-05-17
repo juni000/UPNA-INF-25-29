@@ -1,9 +1,17 @@
+/**
+ *	MODULO: Peajes
+ *	FICHERO: peajes.c
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Implementa la gestion del peaje.
+ */
 #include "peajes.h"
 #include <stdio.h>
-#define NCAB 5
-#define PROB_MAX 0.6
-#define PROB_MEDIA 0.3
-#define PROB_MIN 0.1
+#include "ruleta.h"
+#define PROB_MAX 0.6 // Probabilidad de elegir la cabina más ocupada
+#define PROB_MEDIA 0.3 // Probabilidad de elegir la cabina con ocupación media
+#define PROB_MIN 0.1 // Probabilidad de elegir la cabina menos ocupada
 
 typedef struct intervalo{
     int min;
@@ -36,25 +44,32 @@ int posicionMaximoEnPrefijo(int m, taux t){
     return pmax;
 }
 void ordenar(taux *t){
+    printf("Desordendas\n");
+    for(int i = 0; i < NCAB; i++){
+        printf("Cabina = %d , Cantidad = %d \n", t->taux[i].cab, t->taux[i].can);
+    }
     for ( int i = NCAB - 1; i >= 0; i--){
        intercambio(&t->taux[posicionMaximoEnPrefijo(i, *t)], &t->taux[i]);
     }
-    
+    printf("Ordendas\n");
+    for(int i = 0; i < NCAB; i++){
+        printf("Cabina = %d , Cantidad = %d \n", t->taux[i].cab, t->taux[i].can);
+    }
 }
 void guardaCola(Peaje *p, int ncab, Reloj r){
-    encolarCoche(&p->cabinas[ncab], r);
+    encolarCoche(&(*p)[ncab], r);
 }
 
 void iniciarPeaje(Peaje *p){
     for(int i = 0; i < NCAB; i++){
-        iniciarCab(&p->cabinas[i], tipoCobro[i].min, tipoCobro[i].max);
+        iniciarCab(&(*p)[i], tipoCobro[i].min, tipoCobro[i].max);
     }
 }
-int eligeCabina(const Peaje *p){
+int eligeCabina(Peaje p){
     int i, x, n;
     taux t;
     for(i = 0; i < NCAB; i++){
-        t.taux[i].can = cuantosCoches(p->cabinas[i]);
+        t.taux[i].can = cuantosCoches(p[i]);
         t.taux[i].cab = i;
     }
     ordenar(&t);
@@ -64,27 +79,19 @@ int eligeCabina(const Peaje *p){
 }
 void rondaCabinas(Peaje *p, Reloj r){
     for(int i = 0; i < NCAB; i++){
-        servCabina(&p->cabinas[i], r);
+        servCabina(&(*p)[i], r);
     }
 }
 
-void mostrarResultados(Peaje p){
+//A Cambiar
+void mostrarResultadosPeaje(Peaje p){
     float esperaMedia;
     int totalServidos = 0;
     int totalEsperado = 0;
 
     for(int i = 0; i < NCAB; i++){
-        if(p.cabinas[i].servidos == 0){
-            esperaMedia = 0;
-        }else{
-            esperaMedia = (float) p.cabinas[i].totalEsperado / p.cabinas[i].servidos;
-        }
-        printf("Cabina %d: tiempo medio de espera = %.2f segundos, longitud maxima de cola = %d coches\n",
-               i + 1, esperaMedia, p.cabinas[i].maxCoches);
-        totalServidos = totalServidos + p.cabinas[i].servidos;
-        totalEsperado = totalEsperado + p.cabinas[i].totalEsperado;
+        mostrarResultadosCabina(p[i], &totalServidos, &totalEsperado);
     }
-
     if(totalServidos == 0){
         esperaMedia = 0;
     }else{

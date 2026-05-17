@@ -1,9 +1,14 @@
+/**
+ *	MODULO: Ruleta
+ *	FICHERO: ruleta.h
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Define la interfaz de funciones aleatorias.
+ */
 #ifndef RULETA_H
 #define RULETA_H
-#include <stdio.h>
-#include <math.h>
-#include <time.h>
-#include <stdlib.h>
+
 
 void iniciarRuleta();
 int distribucionExponencial(int media);

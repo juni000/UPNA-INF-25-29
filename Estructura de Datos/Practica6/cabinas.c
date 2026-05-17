@@ -1,4 +1,14 @@
+/**
+ *	MODULO: Cabinas
+ *	FICHERO: cabinas.c
+ *	VERSION: 1.0.0
+ *	HISTORICO:
+ *		Creado por Juan Alberto Jimenez el 1/05/25
+ *  DESCRIPCION: Gestiona las cabinas y sus servicios.
+ */
 #include "cabinas.h"
+#include <stdio.h>
+#include "ruleta.h"
 void iniciarCab(Cabina *cab, int tmin, int tmax){
     cab->nCoches = 0;
     cab->maxCoches = 0;
@@ -11,7 +21,7 @@ void iniciarCab(Cabina *cab, int tmin, int tmax){
 }
 void contarCoche(Cabina *cab, Reloj r){
     if (cab->nCoches == 0){
-        cab->proxServ = instante(r) * distribucionLineal(cab->minServ, cab->maxServ);
+        cab->proxServ = instante(r) + distribucionLineal(cab->minServ, cab->maxServ);
     }
     cab->nCoches++;
     if (cab->nCoches > cab->maxCoches){
@@ -39,4 +49,19 @@ void servCabina(Cabina *cab, Reloj r){
             cab->proxServ = instante(r) + distribucionLineal(cab->minServ, cab->maxServ);
         }
     }
+}
+
+void mostrarResultadosCabina(Cabina c, int *totalServidos, int *totalEsperado){
+    float esperaMedia;
+    printf("Coches Servidos: %d \n", c.servidos);
+    printf("Tiempo Total de Espera: %d \n", c.totalEsperado);
+    if(c.servidos == 0){
+        esperaMedia = 0;
+    }else{
+        esperaMedia = (float) c.totalEsperado / c.servidos;
+    }
+    printf("Espera Media: %f \n", esperaMedia);
+    printf("Maximo de Coches en Cola: %d \n", c.maxCoches);
+    *totalServidos += c.servidos;
+    *totalEsperado += c.totalEsperado;
 }
